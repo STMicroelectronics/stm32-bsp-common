@@ -1,9 +1,9 @@
 /**
   ******************************************************************************
-  * @file    hsensor.h
+  * @file    dpredriver.h
   * @author  MCD Application Team
-  * @brief   This header file contains the functions prototypes for the
-  *          Humidity Sensor driver.
+  * @brief   This header file contains the functions prototypes for the  
+  *          DisplayPort Linear Redriver.
   ******************************************************************************
   * @attention
   *
@@ -19,8 +19,8 @@
   */
 
 /* Define to prevent recursive inclusion -------------------------------------*/
-#ifndef __HSENSOR_H
-#define __HSENSOR_H
+#ifndef __DPREDRIVER_H
+#define __DPREDRIVER_H
 
 #ifdef __cplusplus
  extern "C" {
@@ -37,23 +37,43 @@
   * @{
   */
     
-/** @addtogroup HSENSOR
+/** @addtogroup DPREDRIVER
   * @{
   */
 
-/** @defgroup HSENSOR_Exported_Types
+/** @defgroup DPREDRIVER_Exported_Types
   * @{
   */ 
 
-/** @defgroup HSENSOR_Driver_structure  Humidity Sensor Driver structure
+/** @defgroup DPREDRIVER_Channel_Identifier  Channel Identifier
+  * @{
+  */
+ typedef enum {
+   CHANNEL_DP0 = 0,
+   CHANNEL_DP1,
+   CHANNEL_DP2,
+   CHANNEL_DP3,
+   CHANNEL_RX1,
+   CHANNEL_RX2,
+   CHANNEL_SSTX
+ } DPREDRIVER_ChannelId_t;
+/**
+  * @}
+  */
+  
+ /** @defgroup DPREDRIVER_Driver_structure  DisplayPort Linear Redriver Driver structure
   * @{
   */
 typedef struct
 {
-  void       (*Init)(uint16_t); 
-  uint8_t    (*ReadID)(uint16_t);
-  float      (*ReadHumidity)(uint16_t); 
-}HSENSOR_DrvTypeDef;
+  uint32_t  (*Init)(uint16_t);
+  void      (*DeInit)(uint16_t); 
+  uint32_t  (*PowerOn)(uint16_t);
+  uint32_t  (*PowerOff)(uint16_t);
+  uint32_t  (*SetEQGain)(uint16_t, DPREDRIVER_ChannelId_t, uint8_t);
+  uint32_t  (*EnableChannel)(uint16_t, DPREDRIVER_ChannelId_t);
+  uint32_t  (*DisableChannel)(uint16_t, DPREDRIVER_ChannelId_t);
+}DPREDRIVER_Drv_t;
 /**
   * @}
   */
@@ -61,6 +81,7 @@ typedef struct
 /**
   * @}
   */
+
 
 /**
   * @}
@@ -78,6 +99,6 @@ typedef struct
 }
 #endif
 
-#endif /* __HSENSOR_H */
+#endif /* __DPREDRIVER_H */
 
 /************************ (C) COPYRIGHT STMicroelectronics *****END OF FILE****/
