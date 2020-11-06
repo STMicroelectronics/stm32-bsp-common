@@ -35,7 +35,25 @@ This directory contains the BSP Common components drivers.
 # Update History
 
 ::: {.collapse}
-<input type="checkbox" id="collapse-section15" checked aria-hidden="true">
+<input type="checkbox" id="collapse-section16" checked aria-hidden="true">
+<label for="collapse-section16" aria-hidden="true">V7.0.0 / 25-February-2020</label>
+<div>			
+
+## Main Changes
+
+### Component release
+
+-	Rename GUI_Drv_t structure into UTILS_LCD_Drv_t
+
+## Backward Compatibility
+
+-	This release breaks compatibility with previous versions.
+
+</div>
+:::
+
+::: {.collapse}
+<input type="checkbox" id="collapse-section15" aria-hidden="true">
 <label for="collapse-section15" aria-hidden="true">V6.0.1 / 15-October-2019</label>
 <div>			
 
@@ -49,7 +67,7 @@ This directory contains the BSP Common components drivers.
 :::
 
 ::: {.collapse}
-<input type="checkbox" id="collapse-section14" checked aria-hidden="true">
+<input type="checkbox" id="collapse-section14" aria-hidden="true">
 <label for="collapse-section14" aria-hidden="true">V6.0.0 / 12-April-2019</label>
 <div>			
 
