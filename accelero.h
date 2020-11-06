@@ -2,13 +2,11 @@
   ******************************************************************************
   * @file    accelero.h
   * @author  MCD Application Team
-  * @version V4.0.1
-  * @date    21-July-2015
   * @brief   This header file contains the functions prototypes for the Accelerometer driver.
   ******************************************************************************
   * @attention
   *
-  * <h2><center>&copy; COPYRIGHT(c) 2015 STMicroelectronics</center></h2>
+  * <h2><center>&copy; COPYRIGHT(c) 2017 STMicroelectronics</center></h2>
   *
   * Redistribution and use in source and binary forms, with or without modification,
   * are permitted provided that the following conditions are met:
@@ -71,7 +69,7 @@ typedef struct
   void      (*DeInit)(void); 
   uint8_t   (*ReadID)(void);
   void      (*Reset)(void);
-  void      (*LowPower)(void);
+  void      (*LowPower)(uint16_t);
   void      (*ConfigIT)(void);
   void      (*EnableIT)(uint8_t);
   void      (*DisableIT)(uint8_t);

@@ -1,9 +1,9 @@
 /**
   ******************************************************************************
-  * @file    epd.h
+  * @file    tsensor.h
   * @author  MCD Application Team
-  * @brief   This file contains all the functions prototypes for the 
-  *          EPD (E Paper Display) driver.   
+  * @brief   This header file contains the functions prototypes for the
+  *          Temperature Sensor driver. 
   ******************************************************************************
   * @attention
   *
@@ -32,11 +32,11 @@
   * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
   *
   ******************************************************************************
-  */ 
+  */
 
 /* Define to prevent recursive inclusion -------------------------------------*/
-#ifndef __EPD_H
-#define __EPD_H
+#ifndef __HSENSOR_H
+#define __HSENSOR_H
 
 #ifdef __cplusplus
  extern "C" {
@@ -52,37 +52,24 @@
 /** @addtogroup Components
   * @{
   */
-  
-/** @addtogroup Common
+    
+/** @addtogroup HSENSOR
   * @{
   */
 
-/** @addtogroup EPD
+/** @defgroup HSENSOR_Exported_Types
   * @{
-  */
+  */ 
 
-/** @defgroup EPD_Exported_Types
-  * @{
-  */
-
-/** @defgroup EPD_Driver_structure  E Paper Display Driver structure
+/** @defgroup HSENSOR_Driver_structure  Temperature Sensor Driver structure
   * @{
   */
 typedef struct
 {
-  void     (*Init)(void);
-  void     (*WritePixel)(uint8_t);
-
-  /* Optimized operation */
-  void     (*SetDisplayWindow)(uint16_t, uint16_t, uint16_t, uint16_t);
-  void     (*RefreshDisplay)(void);
-  void     (*CloseChargePump)(void);
-
-  uint16_t (*GetEpdPixelWidth)(void);
-  uint16_t (*GetEpdPixelHeight)(void);
-  void     (*DrawImage)(uint16_t, uint16_t, uint16_t, uint16_t, uint8_t*);
-}
-EPD_DrvTypeDef;
+  void       (*Init)(uint16_t); 
+  uint8_t    (*ReadID)(uint16_t);
+  float      (*ReadHumidity)(uint16_t); 
+}HSENSOR_DrvTypeDef;
 /**
   * @}
   */
@@ -102,12 +89,11 @@ EPD_DrvTypeDef;
 /**
   * @}
   */
-
 
 #ifdef __cplusplus
 }
 #endif
 
-#endif /* EPD_H */
+#endif /* __HSENSOR_H */
 
 /************************ (C) COPYRIGHT STMicroelectronics *****END OF FILE****/
