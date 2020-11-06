@@ -6,7 +6,7 @@
   ******************************************************************************
   * @attention
   *
-  * <h2><center>&copy; Copyright (c) 2017 STMicroelectronics.
+  * <h2><center>&copy; Copyright (c) 2018 STMicroelectronics.
   * All rights reserved.</center></h2>
   *
   * This software component is licensed by ST under BSD 3-Clause license,
@@ -18,8 +18,8 @@
   */ 
 
 /* Define to prevent recursive inclusion -------------------------------------*/
-#ifndef __LCD_H
-#define __LCD_H
+#ifndef LCD_H
+#define LCD_H
 
 #ifdef __cplusplus
  extern "C" {
@@ -39,6 +39,21 @@
 /** @addtogroup LCD
   * @{
   */
+
+/** @defgroup LCD_Exported_Constants LCD Exported Constants
+  * @{
+  */
+#define LCD_PIXEL_FORMAT_ARGB8888        0x00000000U   /*!< ARGB8888 LTDC pixel format */
+#define LCD_PIXEL_FORMAT_RGB888          0x00000001U   /*!< RGB888 LTDC pixel format   */
+#define LCD_PIXEL_FORMAT_RGB565          0x00000002U   /*!< RGB565 LTDC pixel format   */
+#define LCD_PIXEL_FORMAT_ARGB1555        0x00000003U   /*!< ARGB1555 LTDC pixel format */
+#define LCD_PIXEL_FORMAT_ARGB4444        0x00000004U   /*!< ARGB4444 LTDC pixel format */
+#define LCD_PIXEL_FORMAT_L8              0x00000005U   /*!< L8 LTDC pixel format       */
+#define LCD_PIXEL_FORMAT_AL44            0x00000006U   /*!< AL44 LTDC pixel format     */
+#define LCD_PIXEL_FORMAT_AL88            0x00000007U   /*!< AL88 LTDC pixel format     */  
+/**
+  * @}
+  */
  
 /** @defgroup LCD_Exported_Types
   * @{
@@ -49,24 +64,46 @@
   */
 typedef struct
 {
-  void     (*Init)(void);
-  uint16_t (*ReadID)(void);
-  void     (*DisplayOn)(void);
-  void     (*DisplayOff)(void);
-  void     (*SetCursor)(uint16_t, uint16_t);
-  void     (*WritePixel)(uint16_t, uint16_t, uint16_t);
-  uint16_t (*ReadPixel)(uint16_t, uint16_t);
-  
-   /* Optimized operation */
-  void     (*SetDisplayWindow)(uint16_t, uint16_t, uint16_t, uint16_t);
-  void     (*DrawHLine)(uint16_t, uint16_t, uint16_t, uint16_t);
-  void     (*DrawVLine)(uint16_t, uint16_t, uint16_t, uint16_t);
-  
-  uint16_t (*GetLcdPixelWidth)(void);
-  uint16_t (*GetLcdPixelHeight)(void);
-  void     (*DrawBitmap)(uint16_t, uint16_t, uint8_t*);
-  void     (*DrawRGBImage)(uint16_t, uint16_t, uint16_t, uint16_t, uint8_t*);
-}LCD_DrvTypeDef;    
+  int32_t ( *DrawBitmap      ) (uint32_t, uint32_t, uint32_t, uint8_t *);
+  int32_t ( *FillRGBRect     ) (uint32_t, uint32_t, uint32_t, uint8_t*, uint32_t, uint32_t);  
+  int32_t ( *DrawHLine       ) (uint32_t, uint32_t, uint32_t, uint32_t, uint32_t);
+  int32_t ( *DrawVLine       ) (uint32_t, uint32_t, uint32_t, uint32_t, uint32_t);
+  int32_t ( *FillRect        ) (uint32_t, uint32_t, uint32_t, uint32_t, uint32_t, uint32_t);
+  int32_t ( *GetPixel        ) (uint32_t, uint32_t, uint32_t, uint32_t*);
+  int32_t ( *SetPixel        ) (uint32_t, uint32_t, uint32_t, uint32_t);
+  int32_t ( *GetXSize        ) (uint32_t, uint32_t *);
+  int32_t ( *GetYSize        ) (uint32_t, uint32_t *);
+  int32_t ( *SetLayer        ) (uint32_t, uint32_t);
+  int32_t ( *GetFormat       ) (uint32_t, uint32_t *);
+} GUI_Drv_t;
+
+typedef struct
+{
+  /* Control functions */
+  int32_t (*Init             )(void*, uint32_t, uint32_t);
+  int32_t (*DeInit           )(void*);
+  int32_t (*ReadID           )(void*, uint32_t*);
+  int32_t (*DisplayOn        )(void*);
+  int32_t (*DisplayOff       )(void*);
+  int32_t (*SetBrightness    )(void*, uint32_t); 
+  int32_t (*GetBrightness    )(void*, uint32_t*);   
+  int32_t (*SetOrientation   )(void*, uint32_t);
+  int32_t (*GetOrientation   )(void*, uint32_t*);
+
+  /* Drawing functions*/
+  int32_t ( *SetCursor       ) (void*, uint32_t, uint32_t); 
+  int32_t ( *DrawBitmap      ) (void*, uint32_t, uint32_t, uint8_t *);
+  int32_t ( *FillRGBRect     ) (void*, uint32_t, uint32_t, uint8_t*, uint32_t, uint32_t);  
+  int32_t ( *DrawHLine       ) (void*, uint32_t, uint32_t, uint32_t, uint32_t);
+  int32_t ( *DrawVLine       ) (void*, uint32_t, uint32_t, uint32_t, uint32_t);
+  int32_t ( *FillRect        ) (void*, uint32_t, uint32_t, uint32_t, uint32_t, uint32_t);
+  int32_t ( *GetPixel        ) (void*, uint32_t, uint32_t, uint32_t*);
+  int32_t ( *SetPixel        ) (void*, uint32_t, uint32_t, uint32_t);
+  int32_t ( *GetXSize        ) (void*, uint32_t *);
+  int32_t ( *GetYSize        ) (void*, uint32_t *);
+}LCD_Drv_t;
+
+
 /**
   * @}
   */
@@ -91,6 +128,6 @@ typedef struct
 }
 #endif
 
-#endif /* __LCD_H */
+#endif /* LCD_H */
 
 /************************ (C) COPYRIGHT STMicroelectronics *****END OF FILE****/
