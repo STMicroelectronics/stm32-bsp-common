@@ -1,5 +1,7 @@
 # BSP COMMON Component
 
+![latest tag](https://img.shields.io/github/v/tag/STMicroelectronics/stm32-bsp-common.svg?color=brightgreen)
+
 ## Overview
 
 **STM32Cube** is an STMicroelectronics original initiative to ease the developers life by reducing efforts, time and cost.

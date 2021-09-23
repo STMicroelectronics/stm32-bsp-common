@@ -1,10 +1,10 @@
 /**
- ******************************************************************************
- * @file    env_sensor.h
- * @author  MCD Application Team
- * @brief   This header file contains the functions prototypes for the
- *          temperature driver
- ******************************************************************************
+  ******************************************************************************
+  * @file    env_sensor.h
+  * @author  MCD Application Team
+  * @brief   This header file contains the functions prototypes for the
+  *          temperature driver
+  ******************************************************************************
   * @attention
   *
   * <h2><center>&copy; Copyright (c) 2017 STMicroelectronics.
@@ -16,7 +16,7 @@
   *                        opensource.org/licenses/BSD-3-Clause
   *
   ******************************************************************************
- */
+  */
 
 /* Define to prevent recursive inclusion -------------------------------------*/
 #ifndef ENV_SENSORS_H
@@ -32,64 +32,64 @@ extern "C" {
 #include <stdint.h>
 
 /** @addtogroup BSP BSP
- * @{
- */
+  * @{
+  */
 
 /** @addtogroup COMPONENTS COMPONENTS
- * @{
- */
+  * @{
+  */
 
 /** @addtogroup COMMON COMMON
- * @{
- */
+  * @{
+  */
 
 /** @addtogroup ENV_SENSORS ENV_SENSORS
- * @{
- */
+  * @{
+  */
 
 /** @addtogroup ENV_SENSORS_Public_Types ENV_SENSORS Public types
- * @{
- */
+  * @{
+  */
 
 /**
- * @brief  ENV_SENSORS driver structure definition
- */
+  * @brief  ENV_SENSORS driver structure definition
+  */
 typedef struct
 {
-  int32_t ( *Init              ) ( void * );
-  int32_t ( *DeInit            ) ( void * );
-  int32_t ( *ReadID            ) ( void *, uint8_t * ); 
-  int32_t ( *GetCapabilities   ) ( void *, void * );
+  int32_t (*Init)(void *);
+  int32_t (*DeInit)(void *);
+  int32_t (*ReadID)(void *, uint8_t *);
+  int32_t (*GetCapabilities)(void *, void *);
 } ENV_SENSOR_CommonDrv_t;
 
 typedef struct
 {
-  int32_t ( *Enable            ) ( void * );
-  int32_t ( *Disable           ) ( void * );
-  int32_t ( *GetOutputDataRate ) ( void *, float * );
-  int32_t ( *SetOutputDataRate ) ( void *, float );
-  int32_t ( *GetValue          ) ( void *, float * );
+  int32_t (*Enable)(void *);
+  int32_t (*Disable)(void *);
+  int32_t (*GetOutputDataRate)(void *, float *);
+  int32_t (*SetOutputDataRate)(void *, float);
+  int32_t (*GetValue)(void *, float *);
 } ENV_SENSOR_FuncDrv_t;
 
 /**
- * @}
- */
+  * @}
+  */
 
 /**
- * @}
- */
+  * @}
+  */
 
 /**
- * @}
- */
+  * @}
+  */
 
 /**
- * @}
- */
+  * @}
+  */
 
 /**
- * @}
- */
+  * @}
+  */
 
 #ifdef __cplusplus
 }
