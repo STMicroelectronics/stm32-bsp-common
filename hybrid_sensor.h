@@ -1,13 +1,13 @@
 /**
   ******************************************************************************
-  * @file    motion_sensor.h
+  * @file    hybrid_sensor.h
   * @author  MCD Application Team
   * @brief   This header file contains the functions prototypes for the
-  *          motion sensor driver
+  *          hybrid sensor driver
   ******************************************************************************
   * @attention
   *
-  * Copyright (c) 2017 STMicroelectronics.
+  * Copyright (c) 2021 STMicroelectronics.
   * All rights reserved.
   *
   * This software is licensed under terms that can be found in the LICENSE file
@@ -18,8 +18,8 @@
   */
 
 /* Define to prevent recursive inclusion -------------------------------------*/
-#ifndef MOTION_SENSOR_H
-#define MOTION_SENSOR_H
+#ifndef HYBRID_SENSOR_H
+#define HYBRID_SENSOR_H
 
 #ifdef __cplusplus
 extern "C" {
@@ -40,16 +40,16 @@ extern "C" {
   * @{
   */
 
-/** @addtogroup MOTION_SENSOR MOTION SENSOR
+/** @addtogroup HYBRID_SENSOR HYBRID SENSOR
   * @{
   */
 
-/** @addtogroup MOTION_SENSOR_Public_Types MOTION SENSOR Public types
+/** @addtogroup HYBRID_SENSOR_Public_Types HYBRID SENSOR Public types
   * @{
   */
 
 /**
-  * @brief  MOTION SENSOR driver structure definition
+  * @brief  HYBRID SENSOR driver structure definition
   */
 typedef struct
 {
@@ -57,7 +57,16 @@ typedef struct
   int32_t (*DeInit)(void *);
   int32_t (*ReadID)(void *, uint8_t *);
   int32_t (*GetCapabilities)(void *, void *);
-} MOTION_SENSOR_CommonDrv_t;
+} HYBRID_SENSOR_CommonDrv_t;
+
+typedef struct
+{
+  int32_t (*Enable)(void *);
+  int32_t (*Disable)(void *);
+  int32_t (*GetOutputDataRate)(void *, float *);
+  int32_t (*SetOutputDataRate)(void *, float);
+  int32_t (*GetValue)(void *, float *);
+} HYBRID_ENV_SENSOR_FuncDrv_t;
 
 typedef struct
 {
@@ -70,7 +79,7 @@ typedef struct
   int32_t (*SetFullScale)(void *, int32_t);
   int32_t (*GetAxes)(void *, void *);
   int32_t (*GetAxesRaw)(void *, void *);
-} MOTION_SENSOR_FuncDrv_t;
+} HYBRID_MOTION_SENSOR_FuncDrv_t;
 
 /**
   * @}
@@ -96,4 +105,4 @@ typedef struct
 }
 #endif
 
-#endif /* MOTION_SENSOR_H */
+#endif /* HYBRID_SENSOR_H */

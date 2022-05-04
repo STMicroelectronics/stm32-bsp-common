@@ -1,4 +1,4 @@
-Copyright 2014 STMicroelectronics.
+Copyright 2021 STMicroelectronics.
 All rights reserved.
 
 Redistribution and use in source and binary forms, with or without modification,
