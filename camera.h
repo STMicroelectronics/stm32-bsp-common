@@ -70,6 +70,9 @@ typedef struct
   int32_t (*SetPixelFormat)(void *, uint32_t);
   int32_t (*GetPixelFormat)(void *, uint32_t *);
   int32_t (*NightModeConfig)(void *, uint32_t);
+  int32_t (*SetFrequency)(void *, int32_t);
+  int32_t (*SetGain)(void *, int32_t);
+  int32_t (*SetExposure)(void *, int32_t);
 } CAMERA_Drv_t;
 
 /**
